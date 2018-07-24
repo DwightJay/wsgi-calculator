@@ -50,6 +50,22 @@ html_text = """<html>
 </body>
 </html>"""
 
+html_text_none = """<html>
+<head>
+<title>WSGI Calulator (lesson04 assignment)</title>
+</head>
+<body>
+<h1>WSGI Calculator Operation Examples below</h1>
+<hr>
+<h3>Examples</h3>
+<p><a href="http://localhost:8080/multiply/3/5">multiply/3/5</a></p>
+<p><a href="http://localhost:8080/add/23/42">add/23/42</a></p>
+<p><a href="http://localhost:8080/subtract/23/42">subtract/23/42</a></p>
+<p><a href="http://localhost:8080/divide/22/11">divide/22/11</a></p>
+<hr>
+</body>
+</html>"""
+
 
 def application(environ, start_response):
     headers = [("Content-type", "text/html")]
@@ -105,7 +121,7 @@ def application(environ, start_response):
         body = "<h1>Not Found</h1>"
     except Exception:
         status = "500 Internal Server Error"
-        body = "<h1>Calculate your url with http://localhost:8080/add/10/10 </h1>"
+        body = html_text_none#"<h1>Calculate your url with http://localhost:8080/add/10/10 </h1>"
     finally:
         headers.append(('Content-length', str(len(body))))
         start_response(status, headers)
